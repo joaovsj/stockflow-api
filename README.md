@@ -6,8 +6,6 @@ Lembrando que os índices devem ser passados da mesma forma como no documento ab
 ![image](https://github.com/joaovsj/warehouse-api/assets/113035480/3659e4c7-df9a-44c5-a825-77f3cc935314)
 
 
-Clique aqui para acessar as [Requisições no POSTMAN](https://app.getpostman.com/join-team?invite_code=d1a229112b02d346da4c89f8fb63a629&target_code=f75353eb40219968f6a11981b030f055)
-
 # Guia de Instação 
 
 > PHP^8.1 </br>
