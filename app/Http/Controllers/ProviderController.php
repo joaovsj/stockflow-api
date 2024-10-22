@@ -22,8 +22,6 @@ class ProviderController extends Controller
     public function searchItems(Request $request){
         $fields = $request->all();
 
-        $providers = DB::table('providers');
-
         return response()->json([
             'status' => true,
             'body' => Provider::where([

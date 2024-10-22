@@ -20,6 +20,18 @@ class UserController extends Controller
         ]);
     }
 
+    public function searchItems(Request $request){
+        $fields = $request->all();
+
+        return response()->json([
+            'status' => true,
+            'body' => User::where([
+                            ['name', 'like', '%'.$fields['name'].'%'],
+                            ['rm', 'like', '%'.$fields['rm'].'%']
+                        ])->orderBy('name', 'asc')->get()
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
