@@ -134,4 +134,35 @@ class ProviderController extends Controller
             'message' => 'Fornecedor não encontrado!'
         ], 404);
     }
+
+    public function deleteAll(Request $request){
+
+        $items  = $request->all();
+        $status = true;
+
+        for ($i=0; $i < count($items); $i++) { 
+            
+            $provider = DB::table('providers')
+                            ->where('id', $items[$i])
+                            ->update(['disabled' => true]); 
+
+            if(!$provider){
+                $status  = false;
+                break;
+            }
+        }
+
+        if($status){
+            return response()->json([
+                'status'    => true, 
+                'message'   => "Fornecedores deletados com sucesso!"
+            ], 200);     
+        }
+
+        return response()->json([
+            'status'    => false, 
+            'message'   => "Erro ao realizar operação!"
+        ], 400);     
+    
+    }
 }

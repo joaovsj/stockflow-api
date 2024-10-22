@@ -37,6 +37,7 @@ Route::group(['middleware' => ['auth:sanctum', 'cors']], function(){
         'users'           => UserController::class,
     ]);    
 
+    Route::post('/providers/all',     [ProviderController::class, 'deleteAll']);
     Route::post('/products/all',     [ProductController::class, 'deleteAll']);
 });
 
