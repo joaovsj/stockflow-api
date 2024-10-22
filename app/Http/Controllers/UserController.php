@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 
 class UserController extends Controller
@@ -30,7 +31,8 @@ class UserController extends Controller
             'name' => $fields['name'],
             'email' => $fields['email'],
             'password' => $fields['password'],
-            'role' => $fields['role']
+            'role' => $fields['role'],
+            'disabled' => false
         ]);
 
         return response()->json([
@@ -144,5 +146,36 @@ class UserController extends Controller
             'status' => false,
             'message' => 'Usuário não encontrado!'
         ], 404);
+    }
+
+    public function deleteAll(Request $request){
+
+        $items  = $request->all();
+        $status = true;
+
+        for ($i=0; $i < count($items); $i++) { 
+            
+            $employee = DB::table('users')
+                            ->where('id', $items[$i])
+                            ->update(['disabled' => true]); 
+
+            if(!$employee){
+                $status  = false;
+                break;
+            }
+        }
+
+        if($status){
+            return response()->json([
+                'status'    => true, 
+                'message'   => "usuários deletados com sucesso!"
+            ], 200);     
+        }
+
+        return response()->json([
+            'status'    => false, 
+            'message'   => "Erro ao realizar operação!"
+        ], 400);     
+    
     }
 }
