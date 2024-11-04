@@ -19,6 +19,18 @@ class ProviderController extends Controller
         ]);
     }
 
+    public function searchItems(Request $request){
+        $fields = $request->all();
+
+        return response()->json([
+            'status' => true,
+            'body' => Provider::where([
+                            ['name', 'like', '%'.$fields['name'].'%'],
+                            ['document', 'like', '%'.$fields['document'].'%']
+                        ])->orderBy('name', 'asc')->get()
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */

@@ -38,7 +38,11 @@ Route::group(['middleware' => ['auth:sanctum', 'cors']], function(){
     ]);    
 
     Route::post('/users/all',     [UserController::class, 'deleteAll']);
+    Route::post('/users/search',     [UserController::class, 'searchItems']);
+
     Route::post('/providers/all',     [ProviderController::class, 'deleteAll']);
+    Route::post('/providers/search',     [ProviderController::class, 'searchItems']);
+
     Route::post('/products/all',     [ProductController::class, 'deleteAll']);
 });
 
