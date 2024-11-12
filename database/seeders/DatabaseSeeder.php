@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             CategoriesSeeder ::  class,
             ProvidersSeeder  ::  class,
             ProductsSeeder   ::  class,
+            MovementsSeeder  ::  class,
         ]);
     }
 }
