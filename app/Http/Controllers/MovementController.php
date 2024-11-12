@@ -15,10 +15,12 @@ class MovementController extends Controller
     public function index()
     {
         $moviment = DB::table('movements as m')
-            ->select('m.*', 'p.name as product', 'u.name as user')
+            ->select('m.*', 'p.name as product', 'u.name as user', 'c.name as category', 'un.name as unity')
             ->orderBy('created_at', 'desc')
             ->crossJoin('users as u', 'u.id', '=', 'user_id')
             ->crossJoin('products as p', 'p.id', '=', 'product_id')
+            ->crossJoin('units as un', 'un.id', '=', 'p.unity_id')
+            ->crossJoin('categories as c', 'c.id', '=', 'p.category_id')
             ->get()->toArray();
 
         return response()->json([
@@ -78,13 +80,15 @@ class MovementController extends Controller
      */
     public function store(Request $request)
     {
-
-        $userId = $this->getUserId($request['user_id']);
+        $movement = $request->all();
+        $userId = $request['user_id'];
 
         $productId      = $request['product_id'];
         $typeOperation  = $request['type'];
         $quantity       = $request['quantity'];
         
+        $request['created_at'] = str_replace('T', ' ', $request['created_at']);
+
         $result = $this->verifyType($productId, $typeOperation, $quantity);
         
         if($result['status'] == false){
@@ -96,7 +100,7 @@ class MovementController extends Controller
 
         }
 
-        $request['user_id'] = base64_decode($request['user_id']);
+        //$request['user_id'] = base64_decode($request['user_id']);
 
         if(Movement::create($request->all())){
             
@@ -119,39 +123,21 @@ class MovementController extends Controller
      */
     private function verifyType($productId, $typeOperation, $quantity){
         
-        $products = DB::table('products')->select('quantity')->where('id', '=', $productId)->get();
-        $currentQuantity = $products[0]->quantity; 
-
         if($typeOperation == 'E'){
-        
-            $newQuantity = $this->sumValues($currentQuantity, $quantity);
-            return $this->updateQuantity($productId, $newQuantity);    
+            DB::table('products')->where('id', '=', $productId)->increment('quantity', $quantity);
+            return [
+                'status' => true,
+                'message' => 'Operação feita com sucesso!'
+            ];
         }
-
+        
+        $products = DB::table('products')->select('quantity')->where('id', '=', $productId)->get()->first();
+        $currentQuantity = $products->quantity; 
+        
         $result = $currentQuantity > $quantity ? true : false;
-
-        if($result){
-            $newQuantity = $this->subtractValues($currentQuantity, $quantity);
-            return $this->updateQuantity($productId, $newQuantity);    
-        }
         
-        return [
-            'status' => false,
-            'message' => 'A quantidade que você quer retirar é maior ou igual a que a que existe no estoque!'
-        ];
-
-    }
-
-    /**
-     * Update the new quantity of product by quantity sent by form
-     */
-    private function updateQuantity($productId, $newQuantity){
-
-        $result = DB::table('products')
-            ->where('id', '=', $productId)
-            ->update(['quantity' => $newQuantity]);
-
-        if($result == 1){
+        if($result){
+            DB::table('products')->where('id', '=', $productId)->decrement('quantity', $quantity);
             return [
                 'status' => true,
                 'message' => 'Operação feita com sucesso!'
@@ -160,8 +146,9 @@ class MovementController extends Controller
         
         return [
             'status' => false,
-            'message' => 'Erro ao ralizar operação!'
+            'message' => 'A quantidade que você quer retirar é maior do que existe no estoque!'
         ];
+
     }
 
     /**
@@ -172,28 +159,6 @@ class MovementController extends Controller
         return $userId;
     }
 
-    /**
-     * Sum the values using the quantity in database and the quantity sent by form
-     */
-    private function sumValues($oldQuantity, $newQuantity){
-
-        $quantity = $oldQuantity + $newQuantity;
-        return $quantity;
-    }
-
-    /**
-     * Subtract the values using the quantity in database and the quantity sent of form
-     */
-    private function subtractValues($oldQuantity, $newQuantity){
-        $quantity = $oldQuantity - $newQuantity;
-        return $quantity;
-    }
-
-    
-
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         $movement = Movement::find($id);
