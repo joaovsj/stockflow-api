@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class DashboardControlller extends Controller
 {
@@ -16,10 +17,17 @@ class DashboardControlller extends Controller
     public function index(Request $request)
     {
         
-        $from   = request('from') ?? "2024-05-01";
-        $until  = request('until') ?? date("Y/m/d");
+        $from = request('from')
+            ? Carbon::parse(request('from'))->format('Y-m-d H:i:s')
+            : "2024-05-01 00:00:00";
+
+        $until = request('until')
+            ? Carbon::parse(request('until'))->format('Y-m-d H:i:s')
+            : Carbon::now()->format('Y-m-d H:i:s');
+
         $type   = request('type') ?? "";
-        $userId = request('user') ?? null;
+        $userId = request('user') ?? 1;
+
 
         try {
             $this->quantityByCategory($from, $until, $type, $userId);
