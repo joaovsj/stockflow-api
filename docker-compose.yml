@@ -1,8 +1,7 @@
 version: '3.8'
 services: 
   stockflow-api:
-    build: .
-    container_name: stockflow-api
+    image: joaovsj/stockflow-api:1.0
     ports: 
       - "8000:80"
     depends_on:
@@ -10,11 +9,12 @@ services:
 
   mysql:
     image: mysql:8
-    container_name: mysql_stock
     restart: always
     environment:
       MYSQL_DATABASE: warehouse
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
+
     ports:
       - "3306:3306"
     volumes:

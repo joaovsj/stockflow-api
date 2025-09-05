@@ -5,7 +5,7 @@ echo "⏳ Aguardando MySQL..."
 until nc -z -v -w30 mysql 3306
 do
   echo "Ainda não está pronto, tentando novamente..."
-  sleep 5
+  sleep 15
 done
 
 # Executar migrations + seeders
