@@ -30,12 +30,12 @@ Route::group(['middleware' => ['auth:sanctum', 'cors']], function(){
     Route::get('/movements/out',    [MovementController::class, 'showOut']);
 
     Route::apiResources([
-        'category'        => CategoryController::class,
-        'providers'       => ProviderController::class,
-        'units'           => UnityController::class,
-        'products'        => ProductController::class,
-        'movements'       => MovementController::class,
-        'users'           => UserController::class,
+        'categories'      => CategoryController ::  class,
+        'providers'       => ProviderController ::  class,
+        'units'           => UnityController    ::  class,
+        'products'        => ProductController  ::  class,
+        'movements'       => MovementController ::  class,
+        'users'           => UserController     ::  class,
     ]);    
 
     // Searchs
