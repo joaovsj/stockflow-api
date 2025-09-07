@@ -9,8 +9,8 @@ do
 done
 
 # Executar migrations + seeders
-echo "🚀 Rodando migrations e seeders..."
-php artisan migrate --seed --force
+echo "🚀 Rodando migrations..."
+php artisan migrate --force
 
 # Iniciar Apache
 echo "✅ Subindo Apache..."

@@ -1,7 +1,7 @@
 version: '3.8'
 services: 
   stockflow-api:
-    image: joaovsj/stockflow-api:1.0
+    image: joaovsj/stockflow-api:3.0
     ports: 
       - "8000:80"
     depends_on:
