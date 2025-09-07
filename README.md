@@ -1,6 +1,6 @@
 # Guia da API
 
-As rotas estão todas em inglês por questão de convenção e padronização de desenvolvimento, mas tudo aquilo que for exibido para usuário será retornado em português, como por exemplo as mensagens de erros nas validações, serão retornadas em português. Cabe apenas ao responsável pelo Frontend exibí-las.  </br> </br>
+As rotas estão todas em inglês por questão de convenção e padronização de desenvolvimento, mas tudo aquilo que for exibido para usuário será retornado em português, como por exemplo as mensagens de erros nas validações, serão retornadas em português. Cabe apenas ao responsável pelo Frontend exibí-las. Uma `imagem` docker também está disponível no [**Docker Hub.**](https://hub.docker.com/r/joaovsj/stockflow-api) </br> </br>
 
 # Guia de Instação 
 
@@ -187,6 +187,10 @@ Sabendo disso você ***DEVE*** cadastrar a categoria ***ANTES*** do produto, par
     "user_id": "Nw=="
 }
 ```
+
+## Collaborators 🤝 
+
+All the features of the app and API was developed in partneship with [Carlos Vinicius](https://github.com/Vviniciuss13) since the beginning. 
 
 
 
