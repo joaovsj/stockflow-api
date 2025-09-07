@@ -1,16 +1,8 @@
 # Guia da API
 
 As rotas estão todas em inglês por questão de convenção e padronização de desenvolvimento, mas tudo aquilo que for exibido para usuário será retornado em português, como por exemplo as mensagens de erros nas validações, serão retornadas em português. Cabe apenas ao responsável pelo Frontend exibí-las.  </br> </br>
-Lembrando que os índices devem ser passados da mesma forma como no documento abaixo, vou anexar um link para as requisições do POSTMAN, não esqueça de alterar a variável de ambiente para FATEC, para que ele possa identificá-la. </br> </br>
-
-![image](https://github.com/joaovsj/warehouse-api/assets/113035480/3659e4c7-df9a-44c5-a825-77f3cc935314)
-
 
 # Guia de Instação 
-
-> PHP^8.1 </br>
-> COMPOSER 
-
 
 1. Após clonar o repositório, abra-o na raiz do projeto e digite o seguinte comando:
 ```php
@@ -74,7 +66,7 @@ Para esse projeto está sendo utilIzado o  pacote Sanctum para geração do TOKE
 O id do usuário também é retornado CRIPOGRAFADO em Base64, para utilizá-lo, você precisa descripografar.
 [Como descriptografar?](https://devpleno.com/como-converter-uma-string-em-base64-em-javascript-navegador-e-nodejs)
 
-* Estrutura que a rota de LOGIN expera:
+* Estrutura que a rota de LOGIN espera:
 ```javascript
 {
     "email": "rosa@gmail.com",
@@ -119,11 +111,11 @@ Sabendo disso você ***DEVE*** cadastrar a categoria ***ANTES*** do produto, par
 
 | Rota | Método | Função |
 |---|---|----|
-| `/category` |  GET | Lista todos as categorias
-| `/category` |  POST | Adiciona uma categoria
-| `/category/1` |  GET | Exibi uma categoria
-| `/category/1` |  PUT | Altera um categoria com _id_
-| `/category/1` |  DELETE | Deleta uma categoria com _id_
+| `/categories` |  GET | Lista todos as categorias
+| `/categories` |  POST | Adiciona uma categoria
+| `/categories/1` |  GET | Exibi uma categoria
+| `/categories/1` |  PUT | Altera um categoria com _id_
+| `/categories/1` |  DELETE | Deleta uma categoria com _id_
 
 * Estrutura que ela espera no método de EDIÇÃO e CADASTRAMENTO
  
