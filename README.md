@@ -100,9 +100,13 @@ Sabendo disso você ***DEVE*** cadastrar a categoria ***ANTES*** do produto, par
  
 ```javascript
 {
-    "name": "Manteiga",
-    "category_id": 3,
-    "provider_id": 3,
+    "name": "Copo",
+    "quantity": 15,
+    "price": 5.5,
+    "minimum": 10,
+    "maximum": 30,
+    "category_id": 1,
+    "provider_id": 1,
     "unity_id": 1
 }
 ```
@@ -141,7 +145,20 @@ Sabendo disso você ***DEVE*** cadastrar a categoria ***ANTES*** do produto, par
  
 ```javascript
 {
-    "name": "Guardian Glass"
+    "provider": {
+      "name": "Rimilson",
+      "document": 123456789,
+      "cellphone": 123456789,
+      "email": "railmilson@gmail.com"
+    },
+    "address": {
+      "cep": 18279629,
+      "street": "Rua X",
+      "number": 456,
+      "city": "Yolinda",
+      "state": "SP",
+      "neighborhood": "Romarioa"
+    }
 }
 ```
 
