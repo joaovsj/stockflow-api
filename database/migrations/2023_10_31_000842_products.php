@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name', 50);
             $table->float('quantity', 8, 3);
+            $table->float('price', 8,2);
+
             // $table->string('description', 255);
             
             $table->integer('minimum');

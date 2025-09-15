@@ -19,6 +19,7 @@ class ProductFactory extends Factory
         return [
             'name'          => fake()->unique()->name(),
             'quantity'      => fake()->numberBetween(5,40),
+            'price'         => fake()->randomFloat(2, 5, 50),
             'minimum'       => fake()->numberBetween(5,20),
             'maximum'       => fake()->numberBetween(40,60),
             'category_id'   => fake()->numberBetween(1,3),

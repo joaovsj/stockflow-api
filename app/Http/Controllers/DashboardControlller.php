@@ -85,7 +85,7 @@ class DashboardControlller extends Controller
         $total = DB::table('categories')
             ->join('products', 'categories.id', '=', 'products.category_id')
             ->join('movements', 'products.id', '=', 'movements.product_id')
-            ->select('categories.name as category_name', DB::raw('SUM(movements.price) as price'))
+            ->select('categories.name as category_name', DB::raw('SUM(products.price) as price'))
             ->where('movements.type', 'like', '%'.$type.'%')
             ->when($userId, function($query, $userId){ // apenas adiciona o where se o id user não for nulo
                 return $query->where('movements.user_id', '=', $userId);

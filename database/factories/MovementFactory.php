@@ -18,7 +18,6 @@ class MovementFactory extends Factory
     {
         return [
             'type'          => implode(fake()->randomElements(['E', 'S'], true)),
-            'price'         => fake()->randomFloat(2, 5, 50),
             'quantity'      => fake()->randomDigitNot(0),
             'description'   => fake()->sentence('3'),
             'product_id'    => fake()->numberBetween(1,30),

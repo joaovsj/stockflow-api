@@ -22,15 +22,7 @@ class ProviderFactory extends Factory
             'document'      => fake()->randomNumber(),
             'email'         => fake()->unique()->safeEmail(),
             'cellphone'     => fake()->randomNumber()
-            
-
-            // $table->id();
-            // $table->string('name'); 
-            // $table->string('document'); 
-            // $table->string('email'); 
-            // $table->string('cellphone'); 
-            // $table->boolean('disabled');
-            // $table->timestamps();
+        
             // $table->id();
             // $table->unsignedBigInteger('provider_id');
             // $table->string('cep', 9); 

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('movements', function (Blueprint $table) {
             $table->id();
             $table->enum('type', ['E', 'S']);
-            $table->float('price', 8,2)->nullable();
+            // $table->float('price', 8,2)->nullable();
             $table->float('quantity', 8, 3);
             $table->text('description')->nullable();
 

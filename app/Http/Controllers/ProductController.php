@@ -27,6 +27,7 @@ class ProductController extends Controller
             ->where('c.name', 'like', "%$category%")
             ->orderBy('updated_at', 'desc')
             ->get()->toArray();
+        
 
         return response()->json([
             'status' => true,
