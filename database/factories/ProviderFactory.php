@@ -18,7 +18,7 @@ class ProviderFactory extends Factory
     {
         return [
             
-            'name'          => fake()->unique()->name(),
+            'name'          => fake()->unique()->word(),
             'document'      => fake()->randomNumber(),
             'email'         => fake()->unique()->safeEmail(),
             'cellphone'     => fake()->randomNumber()
