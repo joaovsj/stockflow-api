@@ -118,8 +118,8 @@ class DashboardControlller extends Controller
             ->select(
                 'products.id',
                 'products.name', 
-                DB::raw('SUM(movements.quantity) as quantity'), 
-                DB::raw('SUM(movements.price) as price'))
+                'products.price',
+                DB::raw('SUM(movements.quantity) as quantity'))
             ->where('movements.type', 'like', '%'.$type.'%')
             ->when($userId, function($query, $userId){ // apenas adiciona o where se o id user não for nulo
                 return $query->where('movements.user_id', '=', $userId);
@@ -128,10 +128,6 @@ class DashboardControlller extends Controller
             ->where('movements.created_at', '<=', $until)
             ->groupBy('products.id','products.name')
             ->get();
-        
-        foreach ($total as $key => $value) {
-            $value->price = round($value->price, 2);
-        }
 
         $this->products = $total;
     }
