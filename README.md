@@ -2,6 +2,18 @@
 
 As rotas estão todas em inglês por questão de convenção e padronização de desenvolvimento, mas tudo aquilo que for exibido para usuário será retornado em português, como por exemplo as mensagens de erros nas validações, serão retornadas em português. Cabe apenas ao responsável pelo Frontend exibí-las. Uma `imagem` docker também está disponível no [**Docker Hub.**](https://hub.docker.com/r/joaovsj/stockflow-api) </br> </br>
 
+# Credenciais
+
+São apenas para teste, podem ser alteradas manualmente. 
+
+```javascript
+{
+    "email": "admin@gmail.com",
+    "password": "12345"
+}
+```
+
+
 # Guia de Instação 
 
 1. Após clonar o repositório, abra-o na raiz do projeto e digite o seguinte comando:
